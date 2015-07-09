@@ -8,8 +8,8 @@
 </head>
 <body>
 
-<div class="row contain-to-grid">
-  <div class="small-2 column">
+<div class="show-for-medium-up">
+  <!-- <div class="large-12 columns"> -->
     <nav class="top-bar">
       <ul class="title-area">
         <li class="name">
@@ -28,9 +28,10 @@
           </ul>
       </section>
     </nav>
-  </div>
+  <!-- </div> -->
 </div>
 
+<div class="show-for-medium-up">
   <%- flash.each do |key, value| -%>
     <div class="flash flash-<%= key %>">
       <%= value %>
@@ -38,12 +39,42 @@
   <%- end -%>
 
   <div class="row">
-    <!-- <div class=".small-4.columns"> -->
+    <div class="medium-5 columns large-12 columns">
       <%= yield %>
     </div>
-    <!-- <div class="small-4 column"> -->
-      <!-- amazing sidebar content -->
-    <!-- </div> -->
+  </div>
+
+</div>
+
+  <div class="off-canvas-wrap show-for-small-only" data-offcanvas>
+    <div class="inner-wrap">
+
+      <a class="left-off-canvas-toggle" href="#" >Menu</a>
+
+      <!-- Off Canvas Menu -->
+      <aside class="left-off-canvas-menu">
+          <!-- whatever you want goes here -->
+          <ul>
+            <%- if current_user -%>
+              <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+            <%- else -%>
+              <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+              <li><%= link_to 'Sign In', new_user_session_path %></li>
+            <%- end -%>
+          </ul>
+      </aside>
+
+      <!-- main content goes here -->
+      <div class="row">
+        <div class="medium-5 columns">
+          <%= yield %>
+        </div>
+      </div>
+
+    <!-- close the off-canvas menu -->
+    <a class="exit-off-canvas"></a>
+
+    </div>
   </div>
 
   <%= javascript_include_tag 'application' %>
