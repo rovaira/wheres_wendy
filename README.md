@@ -1,5 +1,19 @@
 == README
 
+Where's Wendy?
+Find nearby Wellesley alums
+wheres-wendy.herokuapp.com
+
+This app is intended to help you connect with Wellesley alums near you.
+
+Ruby version: 2.2.0
+
+System dependencies (gems):
+
+How to run the test suite:
+* Bundle
+* Rake spec
+--
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
