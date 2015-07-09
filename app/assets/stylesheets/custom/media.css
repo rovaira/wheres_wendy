@@ -1,10 +1,10 @@
 @media only screen and (max-width: 942px) {
 
     /* Makes the responsive menu fit in the navigation container and change its background to black */
-    .top-bar ul {
+    /*.top-bar ul {
         background-color: rgba(0, 0, 0, 0.5);
         padding-bottom: 13px;
-    }
+    }*/
 
     /* Change non active menu item color to black */
     .top-bar-section ul li > a {
