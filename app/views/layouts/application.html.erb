@@ -49,12 +49,12 @@
   <div class="off-canvas-wrap show-for-small-only" data-offcanvas>
     <div class="inner-wrap">
 
-      <a class="left-off-canvas-toggle" href="#" >Menu</a>
-
+      <a class="left-off-canvas-toggle" href="#" aria-expanded="true">| | |</a>
       <!-- Off Canvas Menu -->
       <aside class="left-off-canvas-menu">
           <!-- whatever you want goes here -->
-          <ul>
+          <ul class="off-canvas-list" style="height:200px;">
+            <li><%= link_to 'Home', root_path %></li>
             <%- if current_user -%>
               <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
             <%- else -%>
