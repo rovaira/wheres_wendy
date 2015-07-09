@@ -1,0 +1,30 @@
+@media only screen and (max-width: 942px) {
+
+    /* Makes the responsive menu fit in the navigation container and change its background to black */
+    .top-bar ul {
+        background-color: rgba(0, 0, 0, 0.5);
+        padding-bottom: 13px;
+    }
+
+    /* Change non active menu item color to black */
+    .top-bar-section ul li > a {
+        color: #fff;
+    }
+
+    /* Gives the dropdown ul a black fill */
+    .top-bar-section ul {
+        background: #000;
+    }
+
+    /* Give the BACK button after going in a submenu the appropriate filling */
+    .top-bar-section .dropdown li.title h5 a {
+        line-height: 57px;
+    }
+
+    /* This fixes the position and the color of the dropdown arrow */
+    .top-bar-section .has-dropdown > a:after {
+        border-color: rgba(255, 255, 255, 1) transparent transparent;
+        margin-top: 2.5px;
+    }
+
+} /* end media query */
