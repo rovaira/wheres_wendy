@@ -1,0 +1,54 @@
+<div class="show-for-medium-up">
+
+  <!-- <div class="fixed"> -->
+    <nav class="top-bar fixed" data-topbar role="navigation">
+      <ul class="title-area">
+        <li class="name">
+          <h1><a href="/">Where's Wendy?</a></h1>
+        </li>
+      </ul>
+
+      <section class="top-bar-section">
+
+        <ul class="right">
+                <li>TEST</li>
+          <%- if !current_user.nil? -%>
+            <li class="has-dropdown">
+              <%= link_to 'admin', '#' %>
+              <ul class="dropdown">
+                <li>TEST</li>
+              </ul>
+            </li>
+
+            <li class="has-dropdown">
+              <%= link_to current_user.username, "#", is_hover: false  %>
+              <ul class="dropdown">
+                <li><%= link_to 'Edit Profile', edit_user_registration_path %></li>
+                <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+              </ul>
+            </li>
+            <!-- <div id=profile_pic> -->
+            <li id=profile_pic>
+              <%= image_tag current_user.profile_photo, size: '25x25' %>
+            </li>
+            <!-- </div> -->
+          <%- elsif current_user -%>
+            <li id=profile_pic>
+              <%= image_tag current_user.profile_photo, size: '25x25' %>
+            </li>
+            <li class="has-dropdown">
+              <%= link_to current_user.username, "#" %>
+              <ul class="dropdown">
+                <li><%= link_to 'Edit Profile', edit_user_registration_path %></li>
+                <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+                <%- else -%>
+                <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+                <li><%= link_to 'Sign In', new_user_session_path %></li>
+              </ul>
+            </li>
+          <%- end -%>
+        </ul>
+      </section>
+    </nav>
+  <!-- </div> -->
+</div>

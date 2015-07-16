@@ -1,0 +1,30 @@
+<nav class="tab-bar sticky show-for-small-only">
+  <section class="middle tab-bar-section">
+    <h1 class="title"><%= link_to "Where's Wendy?", root_path %></h1>
+  </section>
+  <section class="right-small">
+    <a class="right-off-canvas-toggle menu-icon" href="#"><span></span></a>
+  </section>
+</nav>
+
+<aside class="right-off-canvas-menu show-for-small-only">
+  <ul class="off-canvas-list">
+    <%- if !current_user.nil? -%>
+      <li><label> Welcome <%= current_user.username %>! </label></li>
+    <%- else -%>
+      <li><label> Welcome to Where's Wendy? </label></li>
+    <%- end -%>
+    <%- if current_user %>
+      <li><%= link_to 'Edit Profile', edit_user_registration_path %></li>
+      <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+    <%- else -%>
+      <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+      <li><%= link_to 'Sign In', new_user_session_path %></li>
+    <%- end -%>
+
+    <%- if !current_user.nil? -%>
+      <li><label>Admin</label></li>
+      <li>TEST</li>
+    <%- end -%>
+  </ul>
+</aside>

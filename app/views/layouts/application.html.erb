@@ -7,77 +7,37 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<div class="show-for-medium-up">
-  <!-- <div class="large-12 columns"> -->
-    <nav class="top-bar">
-      <ul class="title-area">
-        <li class="name">
-          <h1><a href="/">Where's Wendy?</a></h1>
-        </li>
-      </ul>
-
-      <section class="top-bar-section">
-          <ul class="right">
-            <%- if current_user -%>
-              <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
-            <%- else -%>
-              <li><%= link_to 'Sign Up', new_user_registration_path %></li>
-              <li><%= link_to 'Sign In', new_user_session_path %></li>
-            <%- end -%>
-          </ul>
-      </section>
-    </nav>
-  <!-- </div> -->
-</div>
-
-<div class="show-for-medium-up">
-  <%- flash.each do |key, value| -%>
-    <div class="flash flash-<%= key %>">
-      <%= value %>
-    </div>
-  <%- end -%>
-
-  <div class="row">
-    <div class="medium-5 columns large-12 columns">
-      <%= yield %>
-    </div>
-  </div>
-
-</div>
-
-  <div class="off-canvas-wrap show-for-small-only" data-offcanvas>
+  <div class="off-canvas-wrap fixed" data-offcanvas>
     <div class="inner-wrap">
+      <%= render "layouts/small_header" %>
+      <%= render "layouts/not_small_header" %>
 
-      <a class="left-off-canvas-toggle" href="#" aria-expanded="true">| | |</a>
-      <!-- Off Canvas Menu -->
-      <aside class="left-off-canvas-menu">
-          <!-- whatever you want goes here -->
-          <ul class="off-canvas-list" style="height:200px;">
-            <li><%= link_to 'Home', root_path %></li>
-            <%- if current_user -%>
-              <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
-            <%- else -%>
-              <li><%= link_to 'Sign Up', new_user_registration_path %></li>
-              <li><%= link_to 'Sign In', new_user_session_path %></li>
-            <%- end -%>
-          </ul>
-      </aside>
+      <%= render "layouts/flash" %>
 
-      <!-- main content goes here -->
-      <div class="row">
-        <div class="medium-5 columns">
-          <%= yield %>
-        </div>
+      <section class="main-section">
+        <div class="row fullWidth">
+          <div class="small-12 small-centered text-center">
+            <div class = "under-header">
+              <%= yield %>
+            </div>
+          </div>
+        </section>
+
+        <a class="exit-off-canvas"></a>
       </div>
-
-    <!-- close the off-canvas menu -->
-    <a class="exit-off-canvas"></a>
-
     </div>
   </div>
+      <%= javascript_include_tag 'application' %>
+      <%= yield :extra_footer %>
 
-  <%= javascript_include_tag 'application' %>
-  <%= yield :extra_footer %>
+      <script>
+        $(document).ready(function() {
+          setTimeout(function(){
+            $('#notice_wrapper').fadeOut("slow", function() {
+              $(this).remove();
+            })
+          }, 1500);
+        });
+      </script>
+
 </body>
-</html>
