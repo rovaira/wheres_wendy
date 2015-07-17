@@ -43,6 +43,10 @@ group :development, :test do
   gem 'pry-rails'
 end
 
+group :test do
+  gem 'coveralls', require: false
+end
+
 gem 'rails_12factor', group: :production
 gem 'rspec-rails', group: [:development, :test]
 gem 'capybara', group: [:development, :test]
