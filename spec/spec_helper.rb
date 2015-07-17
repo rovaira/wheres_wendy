@@ -1,3 +1,6 @@
+require 'coveralls'
+Coveralls.wear!('rails')
+
 def sign_in_as(user)
   visit root_path
   within(".show-for-medium-up") do
