@@ -1,0 +1,2 @@
+[27] pry(main)> results[0].data["formatted_address"]
+=> "Boston Common, 139 Tremont Street, Boston, MA 02116, USA"

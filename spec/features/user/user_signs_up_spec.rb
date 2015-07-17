@@ -17,19 +17,20 @@ feature 'user registers', %{
 
     # need to validate for @wellesley.edu or @alum.wellesley.edu email
     fill_in 'Email', with: 'wendy@wellesley.edu'
-    fill_in 'Password', with: 'password'
-    fill_in 'Password confirmation', with: 'password'
 
     fill_in 'First Name', with: 'Wendy'
     fill_in 'Last Name', with: 'Wellesley'
 
-    # drop down menu
-    select '2009', from: 'Class Year'
-    # drop down menu
-    select 'Technology', from: 'Industry/Field'
+    fill_in 'Class Year', with: '2009'
+
+    fill_in 'Blurb', with: 'Sunday Sundaes'
+    
     fill_in 'Phone', with: '6179393969'
     # share phone number - checkbox
-    check 'Yes'
+    check 'Share your number?'
+    
+    fill_in 'Password', with: 'password'
+    fill_in 'Password confirmation', with: 'password'
 
     click_button 'Sign up'
 
