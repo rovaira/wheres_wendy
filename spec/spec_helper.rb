@@ -1,5 +1,5 @@
 require 'coveralls'
-Coveralls.wear!(’rails’)
+Coveralls.wear!('rails')
 
 def sign_in_as(user)
   visit root_path
