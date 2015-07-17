@@ -15,12 +15,21 @@ feature 'user registers', %{
   scenario 'provide valid registration information' do
     visit new_user_registration_path
 
-    fill_in 'Email', with: 'john@example.com'
-    fill_in 'Username', with: "wendy"
+    # need to validate for @wellesley.edu or @alum.wellesley.edu email
+    fill_in 'Email', with: 'wendy@wellesley.edu'
     fill_in 'Password', with: 'password'
     fill_in 'Password confirmation', with: 'password'
-    attach_file('user[profile_photo]',
-      File.absolute_path('./spec/support/upload/image_upload.jpg'))
+
+    fill_in 'First Name', with: 'Wendy'
+    fill_in 'Last Name', with: 'Wellesley'
+
+    # drop down menu
+    select '2009', from: 'Class Year'
+    # drop down menu
+    select 'Technology', from: 'Industry/Field'
+    fill_in 'Phone', with: '6179393969'
+    # share phone number - checkbox
+    check 'Yes'
 
     click_button 'Sign up'
 
