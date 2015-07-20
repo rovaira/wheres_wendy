@@ -13,6 +13,7 @@ feature 'user views map of nearby alums', %{
   let!(:user) { FactoryGirl.create(:user) }
   let!(:current_location) do FactoryGirl.create(:current_location,
     user_id: user.id)
+  end
 
   scenario 'user checks in' do
     sign_in_as(user)
