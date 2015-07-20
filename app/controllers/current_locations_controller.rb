@@ -9,7 +9,6 @@ class CurrentLocationsController < ApplicationController
       # current_location_markers(current_locations)
       locals current_locations: current_locations
     end
-
   end
 
   def show
@@ -24,7 +23,7 @@ class CurrentLocationsController < ApplicationController
     @current_location = CurrentLocation.new(current_location_params)
     if @current_location.save
       redirect_to @current_location,
-      notice: "Successfully created user location."
+        notice: "Successfully created user location."
     else
       render :action => 'new'
     end
@@ -38,9 +37,9 @@ class CurrentLocationsController < ApplicationController
     @current_location = CurrentLocation.find(params[:id])
     if @current_location.update_attributes(current_location_params)
       redirect_to @current_location,
-      notice: "Successfully updated user's location."
+        notice: "Successfully updated user's location."
     else
-      render :action => 'edit'
+      render action: 'edit'
     end
   end
 
@@ -54,9 +53,8 @@ class CurrentLocationsController < ApplicationController
 
   def current_location_params
     params.require(:current_location).permit(:user_id, :address, :latitude,
-    :longitude)
+      :longitude)
   end
-
   # def current_location_markers(current_locations)
   #   @hash = Gmaps4rails.build_markers(current_locations)
   # do |current_location, marker|
@@ -65,5 +63,4 @@ class CurrentLocationsController < ApplicationController
   #     marker.infowindow current_location.address
   #   end
   # end
-
 end
