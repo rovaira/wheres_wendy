@@ -5,6 +5,12 @@ class ApplicationController < ActionController::Base
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
+  private
+
+  def locals(values)
+    render locals: values
+  end
+
   protected
 
   def configure_permitted_parameters

@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root 'homes#index'
   devise_for :users
   resources :users, only: [:show]
+  resources :current_locations
 
 
   # devise_for :users, controllers: { sessions: "users/sessions" }
