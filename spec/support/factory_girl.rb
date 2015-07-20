@@ -10,7 +10,7 @@ FactoryGirl.define do
     class_year '2009'
   end
 
-  factory :current_location do 
+  factory :current_location do
     user_id 1
     address '33 Harrison Ave Boston MA'
   end
