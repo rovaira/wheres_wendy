@@ -1,2 +1,4 @@
 [27] pry(main)> results[0].data["formatted_address"]
 => "Boston Common, 139 Tremont Street, Boston, MA 02116, USA"
+
+[![Coverage Status](https://coveralls.io/repos/rovaira/wheres_wendy/badge.svg?branch=master&service=github)](https://coveralls.io/github/rovaira/wheres_wendy?branch=master)
