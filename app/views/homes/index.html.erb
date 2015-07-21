@@ -30,12 +30,12 @@
   </div>
 </div>
 
-<p id="demo">Click the button to get your coordinates.</p>
+<!-- js works below to print user coordinates -->
 
-<button onclick="getLocation()">Try It</button>
+<!-- <button onclick="getLocation()">Try It</button>
+<p id="demo">Click the button to get your coordinates.</p> -->
 
-<br>
-<%= link_to "Try It", current_locations_path, method: :post, form: { data: { 'demo' => 'create' } }%>
+<!-- <%= link_to "Try It", current_locations_path, method: :post, form: { data: { 'demo' => 'create' } }%> -->
 
 <% content_for :extra_footer do %>
 <script type="text/javascript">
