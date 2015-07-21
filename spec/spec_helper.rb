@@ -6,9 +6,11 @@ def sign_in_as(user)
   within(".show-for-medium-up") do
     click_link "Sign In"
   end
-  fill_in 'Email', with: user.email
-  fill_in 'Password', with: user.password
-  click_button 'Log in'
+  # within("#sign-in-form") do
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
+    click_button 'Log in'
+  # end
 end
 
 RSpec.configure do |config|
