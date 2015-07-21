@@ -4,6 +4,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Where's Wendy?</title>
   <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= javascript_include_tag "//maps.google.com/maps/api/js?v=3.13&amp;sensor=false&amp;libraries=geometry" %>
+  <%= javascript_include_tag "//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -27,6 +29,23 @@
   </div>
 
   <%= javascript_include_tag 'application' %>
+
+  <div id="registration-modal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+    <%= render "devise/registrations/signup_form" %>
+    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+  </div>
+
+  <div id="edit-registration-modal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+    <%= render "devise/registrations/edit_form", locals: { user: current_user } %>
+    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+  </div>
+
+  <div id="sign-in-modal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+    <%= render "devise/sessions/signin_form", :locals => { :user => current_user } %>
+    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+  </div>
+
+
   <%= yield :extra_footer %>
 </body>
 </html>
