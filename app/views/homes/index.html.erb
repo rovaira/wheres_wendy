@@ -30,6 +30,13 @@
   </div>
 </div>
 
+<!-- js works below to print user coordinates -->
+
+<!-- <button onclick="getLocation()">Try It</button>
+<p id="demo">Click the button to get your coordinates.</p> -->
+
+<!-- <%= link_to "Try It", current_locations_path, method: :post, form: { data: { 'demo' => 'create' } }%> -->
+
 <% content_for :extra_footer do %>
 <script type="text/javascript">
   $(document).ready(function(){
@@ -43,4 +50,6 @@
     });
   });
 </script>
+
+<script src="app/assets/javascripts/geolocation.js">
 <% end %>
