@@ -11,12 +11,17 @@ class CurrentLocationsController < ApplicationController
     #   # current_location_markers(current_locations)
     #   locals current_locations: current_locations
     # end
-    @current_locations = CurrentLocation.all
+    @current_locations = CurrentLocation.where.not(user_id: current_user)
     @hash = Gmaps4rails.build_markers(@current_locations) do |current_location, marker|
+      infowindow = %{
+      #{current_location.user.first_name} #{current_location.user.last_name} \n
+      #{current_location.user.class_year}
+    }
       marker.lat current_location.latitude
       marker.lng current_location.longitude
-      marker.infowindow current_location.address
+      marker.infowindow(infowindow)
     end
+
   end
 
   def show

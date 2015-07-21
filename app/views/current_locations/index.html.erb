@@ -9,15 +9,15 @@
       <th>Latitude</th>
       <th>Longitude</th>
     </tr>
-    <!-- <% for current_location in @current_locations %>
+    <% for current_location in @current_locations %>
       <tr>
-        <td><%= current_location.user.first_name %><%= current_location.user.last_name %></td>
+        <td><%= current_location.user.first_name %> <%= current_location.user.last_name %></td>
         <td><%= current_location.user.class_year %></td>
         <td><%= current_location.address %></td>
         <td><%= current_location.latitude %></td>
         <td><%= current_location.longitude %></td>
       </tr>
-    <% end %> -->
+    <% end %>
   </table>
 
   <div style='width: 800px;'>
@@ -49,7 +49,7 @@
       var selfMarker = handler.addMarker({
         lat: position.coords.latitude,
         lng: position.coords.longitude
-      });
+      }, { opacity: 0.3 });
       var latitude = selfMarker["serviceObject"]["position"]["k"]
       var longitude = selfMarker["serviceObject"]["position"]["D"]
       var coordinates = {
