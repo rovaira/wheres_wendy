@@ -13,6 +13,7 @@ gem 'devise'
 gem 'foundation-rails'
 gem 'geocoder'
 gem 'rails_12factor'
+gem 'gmaps4rails'
 
 group :development, :test do
   gem 'byebug'

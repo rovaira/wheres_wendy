@@ -1,13 +1,21 @@
 class CurrentLocationsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
-    if params[:search].present?
-      current_locations = CurrentLocation.near(params[:search], 5)
-      # current_location_markers(current_locations)
-      locals current_locations: current_locations
-    else
-      current_locations = CurrentLocation.all
-      # current_location_markers(current_locations)
-      locals current_locations: current_locations
+    # if params[:search].present?
+    #   current_locations = CurrentLocation.near(params[:search], 5)
+    #   # current_location_markers(current_locations)
+    #   locals current_locations: current_locations
+    # else
+    #   current_locations = CurrentLocation.all
+    #   # current_location_markers(current_locations)
+    #   locals current_locations: current_locations
+    # end
+    @current_locations = CurrentLocation.all
+    @hash = Gmaps4rails.build_markers(@current_locations) do |current_location, marker|
+      marker.lat current_location.latitude
+      marker.lng current_location.longitude
+      marker.infowindow current_location.address
     end
   end
 
@@ -34,8 +42,13 @@ class CurrentLocationsController < ApplicationController
   end
 
   def update
-    @current_location = CurrentLocation.find(params[:id])
-    if @current_location.update_attributes(current_location_params)
+    json_hash = JSON.parse(params.first[0])
+    # binding.pry
+    # current_user = User.find(current_user.id)
+    # current_location = CurrentLocation.find_or_create_by(current_user.id)
+
+    @current_location = CurrentLocation.find_or_create_by(user_id: params[:id])
+    if @current_location.update_attributes(json_hash)
       redirect_to @current_location,
         notice: "Successfully updated user's location."
     else
