@@ -9,6 +9,7 @@
       <th>Latitude</th>
       <th>Longitude</th>
     </tr>
+
     <% for current_location in @current_locations %>
       <tr>
         <td><%= current_location.user.first_name %> <%= current_location.user.last_name %></td>
@@ -56,6 +57,7 @@
         "latitude": latitude,
         "longitude": longitude
       };
+    debugger
       $.ajax({
           type: "PATCH",
           url: '/current_locations/'+userId,

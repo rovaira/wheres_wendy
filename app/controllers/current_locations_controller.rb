@@ -48,7 +48,6 @@ class CurrentLocationsController < ApplicationController
 
   def update
     json_hash = JSON.parse(params.first[0])
-    # binding.pry
     # current_user = User.find(current_user.id)
     # current_location = CurrentLocation.find_or_create_by(current_user.id)
 
