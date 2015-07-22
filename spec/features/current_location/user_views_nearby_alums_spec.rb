@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-feature 'user views profile', %Q{
+feature 'user views nearby alums', %{
   As an authenticated user
-  I want to view another user's profile by clicking on their name on the map
-  So that I can get a quick view of their info
+  I want to see a map that has nearby alums displayed
+  So that I can see if anyone is near me to network
 } do
 
   let!(:user) { FactoryGirl.create(:user) }

@@ -1,15 +1,17 @@
 require 'rails_helper'
 
-feature 'user views profile', %Q{
+feature 'user views profile', %{
   As an authenticated user
   I want to view another user's profile by clicking on their name on the map
   So that I can get a quick view of their info
 } do
 
   let!(:user) { FactoryGirl.create(:user) }
+  let!(:current_location) do FactoryGirl.create(:current_location,
+    user_id: user.id)
+  end
 
   scenario 'specify valid credentials' do
-    current_location = FactoryGirl.create(:current_location, user_id: user.id)
     user2 = FactoryGirl.create(:user)
     sign_in_as(user2)
 

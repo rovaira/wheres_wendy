@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-feature 'user signs in', %Q{
+feature 'user signs in', %{
   As a signed up user
   I want to sign in
   So that I can regain access to my account
 } do
 
   let!(:user) { FactoryGirl.create(:user) }
-   
+
   scenario 'specify valid credentials' do
 
     visit root_path
