@@ -12,7 +12,7 @@
 
     <% for current_location in @current_locations %>
       <tr>
-        <td><%= current_location.user.first_name %> <%= current_location.user.last_name %></td>
+        <td><%= link_to "#{current_location.user.first_name} #{current_location.user.last_name}", user_path(id: current_location.user) %></td>
         <td><%= current_location.user.class_year %></td>
         <td><%= current_location.address %></td>
         <td><%= current_location.latitude %></td>

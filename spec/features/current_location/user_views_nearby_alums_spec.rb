@@ -1,34 +1,26 @@
-# require 'rails_helper'
-#
-# feature 'user views map of nearby alums', %{
-#   As an authenticated user
-#   I want to view the map by checking in
-#   So that I can see if any alums are nearby
-# } do
-#   # Acceptance Criteria
-#   # [] I must be a registered user
-#   # [] I cannot view map unless I check in (updating my location)
-#   # [] I should see myself on the map as well
-#
-# let!(:user) { FactoryGirl.create(:user) }
-# let!(:current_location) do FactoryGirl.create(:current_location,
-#   user_id: user.id)
-# end
-#
-#   scenario 'user checks in' do
-#   save_and_open_page
-#     visit root_path
-#     within(".show-for-medium-up") do
-#       click_link "Sign In"
-#     end
-#     within("#sign-in-form") do
-#       fill_in 'Email', with: user.email
-#       fill_in 'Password', with: user.password
-#       click_button 'Log in'
-#     end
-#     click_link "Check In"
-#
-#     expect(page).to have_content("Here's Wendy!")
-#     expect(page).to have_content(current_location.user.first_name)
-#   end
-# end
+require 'rails_helper'
+
+feature 'user views nearby alums', %{
+  As an authenticated user
+  I want to see a map that has nearby alums displayed
+  So that I can see if anyone is near me to network
+} do
+
+  let!(:user) { FactoryGirl.create(:user) }
+  let!(:current_location) do
+    FactoryGirl.create(:current_location, user_id: user.id)
+  end
+
+  scenario 'specify valid credentials' do
+    user2 = FactoryGirl.create(:user)
+    sign_in_as(user2)
+
+    expect(page).to have_content('Signed in successfully')
+    expect(page).to have_content(user2.first_name)
+    click_link 'Check In'
+
+    expect(page).to have_content(user.first_name)
+    expect(page).to have_content(user.last_name)
+    expect(page).to have_content(user.class_year)
+  end
+end
