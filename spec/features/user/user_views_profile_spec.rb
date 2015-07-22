@@ -7,8 +7,8 @@ feature 'user views profile', %{
 } do
 
   let!(:user) { FactoryGirl.create(:user) }
-  let!(:current_location) do FactoryGirl.create(:current_location,
-    user_id: user.id)
+  let!(:current_location) do
+    FactoryGirl.create(:current_location, user_id: user.id)
   end
 
   scenario 'specify valid credentials' do
