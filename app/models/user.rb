@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_one :current_location
+  has_many :pings
 
   validates :first_name, presence: true
   validates :last_name, presence: true
