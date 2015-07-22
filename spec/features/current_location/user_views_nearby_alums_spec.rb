@@ -7,9 +7,11 @@ feature 'user views nearby alums', %{
 } do
 
   let!(:user) { FactoryGirl.create(:user) }
+  let!(:current_location) do
+    FactoryGirl.create(:current_location, user_id: user.id)
+  end
 
   scenario 'specify valid credentials' do
-    current_location = FactoryGirl.create(:current_location, user_id: user.id)
     user2 = FactoryGirl.create(:user)
     sign_in_as(user2)
 
