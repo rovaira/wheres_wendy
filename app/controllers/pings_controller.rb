@@ -4,15 +4,14 @@ class PingsController < ApplicationController
   end
 
   def create
-    # user = User.find(params["receiver_id"])
-    binding.pry
-    receiver = current_user
+    receiver = User.find(params["ping"]["receiver_id"])
     @ping = Ping.new(ping_params)
     if @ping.save
-      redirect_to @ping,
-        notice: "Successfully pinged #{user.first_name}."
+      flash[:notice] = "Successfully pinged #{receiver.first_name}."
+      redirect_to user_path(receiver.id)
     else
-      render :action => 'new'
+      flash[:notice] = "Error pinging #{receiver.first_name}."
+      redirect_to user_path(receiver.id)
     end
   end
 

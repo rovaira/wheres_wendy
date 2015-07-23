@@ -4,3 +4,6 @@
 [![Coverage Status](https://coveralls.io/repos/rovaira/wheres_wendy/badge.svg?branch=master&service=github)](https://coveralls.io/github/rovaira/wheres_wendy?branch=master)
 
 Checkin Table Notes:
+
+
+<body id="<%= params[:controller] %>">

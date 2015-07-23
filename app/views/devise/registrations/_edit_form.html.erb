@@ -1,12 +1,13 @@
 <div id="edit-account-form">
-  <%= form_for(@user || User.new, as: :user, url: registration_path(:user), html: { method: :put }) do |f| %>
+  <%= form_for(user || User.new, as: :user, url: registration_path(:user), html: { method: :put }) do |f| %>
     <div class="field">
       <%= f.label :email %><br />
       <%= f.email_field :email, autofocus: true %>
     </div>
 
     <div class="field">
-      <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+      <%= f.label :password %>
+      <span class="form-fields">Leave blank to not change.</span><br />
       <%= f.password_field :password, autocomplete: "off" %>
     </div>
 
@@ -15,19 +16,51 @@
       <%= f.password_field :password_confirmation, autocomplete: "off" %>
     </div>
 
+
     <div class="field">
-      <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+      <%= f.label :first_name %> <br />
+      <%= f.text_field :first_name %>
+    </div>
+
+    <div class="field">
+      <%= f.label :last_name %> <br />
+      <%= f.text_field :last_name, autocomplete: "off" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :class_year %> <br />
+      <%= f.text_field :class_year, autocomplete: "off" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :blurb %> <br />
+      <%= f.text_field :blurb, autocomplete: "off" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :phone %><br />
+      <%= f.text_field :phone%>
+    </div>
+
+    <div class="field">
+      <%= f.label :share_phone, 'Share your number?' %>
+      <%= f.check_box :share_phone %>
+    </div>
+
+    <div class="field">
+      <%= f.label :current_password %>
+      <span class="form-fields">Confirm changes.</span><br />
       <%= f.password_field :current_password, autocomplete: "off" %>
     </div>
 
     <div class="actions">
-      <%= f.submit "Update" %>
+      <%= f.submit "Update", class: "button secondary tiny" %>
     </div>
   <% end %>
 
   <h3>Cancel my account</h3>
 
-  <p>Unhappy? <%= button_to "Cancel my account", registration_path(:user), data: { confirm: "Are you sure?" }, method: :delete %></p>
+  <p>Unhappy? <%= button_to "Cancel my account", registration_path(:user), class: "button secondary tiny", data: { confirm: "Are you sure?" }, method: :delete %></p>
 
   <%= link_to "Back", :back %>
 </div>

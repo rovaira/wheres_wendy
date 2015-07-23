@@ -1,5 +1,5 @@
 <div id="sign-up-form">
-  <%= form_for(@user || User.new, as: :user, url: registration_path(:user)) do |f| %>
+  <%= form_for(user || User.new, as: :user, url: registration_path(:user)) do |f| %>
     <div class="field">
       <%= f.label :email %><br />
       <%= f.email_field :email, autofocus: true %>

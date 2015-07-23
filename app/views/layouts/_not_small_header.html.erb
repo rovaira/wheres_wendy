@@ -1,6 +1,6 @@
-<!-- <div class="contain-to-grid sticky"> -->
+<body class="<%= params[:controller] %>">
   <div class="show-for-medium-up">
-    <nav class="top-bar test" data-topbar role="navigation">
+    <nav class="top-bar <%= "test" if params[:controller] == 'homes' %>" data-topbar role="navigation">
       <ul class="title-area">
         <li class="name">
           <h1><a href="/">Where's Wendy?</a></h1>
@@ -25,4 +25,4 @@
       </section>
     </nav>
   </div>
-<!-- </div> -->
+</body>

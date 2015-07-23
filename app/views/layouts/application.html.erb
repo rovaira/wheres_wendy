@@ -16,12 +16,12 @@
       <%= render "layouts/not_small_header" %>
       <%= render "layouts/flash" %>
 
-      <section class="main-section">
+      <!-- <section class="main-section"> -->
         <div class="row fullWidth">
           <div class="small-12 small-centered text-center">
             <%= yield %>
           </div>
-        </section>
+        <!-- </section> -->
 
         <a class="exit-off-canvas"></a>
       </div>
@@ -31,17 +31,17 @@
   <%= javascript_include_tag 'application' %>
 
   <div id="registration-modal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-    <%= render "devise/registrations/signup_form" %>
+    <%= render partial: "devise/registrations/signup_form", locals: { user: current_user }  %>
     <a class="close-reveal-modal" aria-label="Close">&#215;</a>
   </div>
 
   <div id="edit-registration-modal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-    <%= render "devise/registrations/edit_form", locals: { user: current_user } %>
+    <%= render partial: "devise/registrations/edit_form", locals: { user: current_user } %>
     <a class="close-reveal-modal" aria-label="Close">&#215;</a>
   </div>
 
   <div id="sign-in-modal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-    <%= render "devise/sessions/signin_form", :locals => { :user => current_user } %>
+    <%= render partial: "devise/sessions/signin_form", locals: { user: current_user } %>
     <a class="close-reveal-modal" aria-label="Close">&#215;</a>
   </div>
 

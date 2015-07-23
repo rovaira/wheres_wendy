@@ -7,13 +7,11 @@
   <% end %>
   <li>Class of <%= @user.class_year %></li>
   <li>Last Check In: <%= @current_location[0].address %></li>
+  <li>Last Check In (coordinates): <%= @current_location[0].latitude %>, <%= @current_location[0].longitude %></li>
 </ul>
 
-<%= form_tag pings_path, method: :post, id: "ping-form" do %>
-<%= f.hidden_field_tag(:sender_id), value: current_user.id %>
-<%= f.hidden_field_tag(:receiver_id), value: params[:id] %>
-<%= submit_tag "Ping Me!", class: "button" %>
+<%= form_for @ping do |f| %>
+  <%= f.hidden_field :sender_id, value: current_user.id  %>
+  <%= f.hidden_field :receiver_id, value: params[:id] %>
+  <%= f.submit "Ping Me!", class: "button" %>
 <% end %>
-
-
-<%= link_to 'Ping Me!', pings_path(sender_id: current_user.id, receiver_id: params[:id]), method: :post, class: "button radius small" %>
