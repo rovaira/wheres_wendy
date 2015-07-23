@@ -36,12 +36,12 @@
   </div>
 
   <div id="edit-registration-modal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-    <%= render "devise/registrations/edit_form", locals: { user: current_user } %>
+    <%= render partial: "devise/registrations/edit_form", locals: { user: current_user } %>
     <a class="close-reveal-modal" aria-label="Close">&#215;</a>
   </div>
 
   <div id="sign-in-modal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-    <%= render "devise/sessions/signin_form", :locals => { :user => current_user } %>
+    <%= render partial: "devise/sessions/signin_form", locals: { user: current_user } %>
     <a class="close-reveal-modal" aria-label="Close">&#215;</a>
   </div>
 

@@ -15,7 +15,7 @@
       <li><label> Welcome to Where's Wendy? </label></li>
     <%- end -%>
     <%- if current_user %>
-      <li><%= link_to 'Edit Profile', edit_user_registration_path %></li>
+      <li><%= link_to 'Edit Profile', edit_user_registration_path, "data-reveal-id" => "edit-registration-modal" %></li>
       <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
     <%- else -%>
       <li><%= link_to 'Sign Up', new_user_registration_path %></li>

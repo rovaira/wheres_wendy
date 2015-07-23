@@ -1,12 +1,13 @@
 <div id="edit-account-form">
-  <%= form_for(@user || User.new, as: :user, url: registration_path(:user), html: { method: :put }) do |f| %>
+  <%= form_for(user || User.new, as: :user, url: registration_path(:user), html: { method: :put }) do |f| %>
     <div class="field">
       <%= f.label :email %><br />
       <%= f.email_field :email, autofocus: true %>
     </div>
 
     <div class="field">
-      <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+      <%= f.label :password %>
+      <span class="form-fields">Leave blank to not change</span><br />
       <%= f.password_field :password, autocomplete: "off" %>
     </div>
 
@@ -16,7 +17,8 @@
     </div>
 
     <div class="field">
-      <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+      <%= f.label :current_password %>
+      <span class="form-fields">To confirm changes</span><br />
       <%= f.password_field :current_password, autocomplete: "off" %>
     </div>
 
