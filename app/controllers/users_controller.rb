@@ -4,9 +4,4 @@ class UsersController < ApplicationController
     @current_location = CurrentLocation.where(user: params[:id])
     @ping = Ping.new
   end
-
-  # def new
-  #   @ping = Ping.new
-  # end
-
 end

@@ -16,7 +16,7 @@ feature 'user registers', %{
     visit root_path
 
     within("#registration-modal") do
-        # need to validate for @wellesley.edu or @alum.wellesley.edu email
+      # need to validate for @wellesley.edu or @alum.wellesley.edu email
       fill_in 'Email', with: 'wendy@wellesley.edu'
 
       fill_in 'First Name', with: 'Wendy'
