@@ -13,10 +13,10 @@ feature 'user registers', %{
   #   an error message
 
   scenario 'provide valid registration information' do
-    visit new_user_registration_path
+    visit root_path
 
     within("#registration-modal") do
-      # need to validate for @wellesley.edu or @alum.wellesley.edu email
+        # need to validate for @wellesley.edu or @alum.wellesley.edu email
       fill_in 'Email', with: 'wendy@wellesley.edu'
 
       fill_in 'First Name', with: 'Wendy'
@@ -41,13 +41,12 @@ feature 'user registers', %{
   end
 
   scenario 'provide invalid registration information' do
-    visit new_user_registration_path
+    visit root_path
 
     within("#registration-modal") do
-      click_button 'Sign up'
+      fill_in 'Email', with: 'wendy'
     end
 
-    expect(page).to have_content("can't be blank")
     expect(page).to_not have_content('Sign Out')
   end
 end

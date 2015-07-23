@@ -36,8 +36,8 @@ feature 'user emails other user', %{
     expect(page).to have_content(user.class_year)
     expect(page).to have_content(current_location.address)
 
-    click_link "Ping Me!"
+    click_button "Ping Me!"
 
-    expect(page).to have_content("You successfully pinged #{user.first_name}!")
+    expect(page).to have_content("Successfully pinged #{user.first_name}.")
   end
 end

@@ -6,8 +6,9 @@
     <li>"<%= @user.blurb %>"</li>
   <% end %>
   <li>Class of <%= @user.class_year %></li>
-  <li>Last Check In: <%= @current_location[0].address %></li>
-  <li>Last Check In (coordinates): <%= @current_location[0].latitude %>, <%= @current_location[0].longitude %></li>
+  <% if @current_location.present? %>
+    <li>Last Check In: <%= @current_location[0].address %></li>
+  <% end %>
 </ul>
 
 <%= form_for @ping do |f| %>
