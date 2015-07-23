@@ -48,8 +48,12 @@ class CurrentLocationsController < ApplicationController
 
   def update
     json_hash = JSON.parse(params.first[0])
-    # current_user = User.find(current_user.id)
-    # current_location = CurrentLocation.find_or_create_by(current_user.id)
+    lat = json_hash["latitude"].to_s
+    long = json_hash["longitude"].to_s
+    query = lat + "," + long
+    found_address = Geocoder.address(query)
+
+    json_hash["address"] = found_address
 
     @current_location = CurrentLocation.find_or_create_by(user_id: params[:id])
     if @current_location.update_attributes(json_hash)
@@ -66,19 +70,20 @@ class CurrentLocationsController < ApplicationController
     redirect_to parks_url, notice: "Successfully destroyed user's location."
   end
 
-  def geocode
-    position = Geocoder.coordinates(params[:query])
-    respond_to do |wants|
-      wants.json { render :json => position }
-    end
-  end
-
   private
 
   def current_location_params
     params.require(:current_location).permit(:user_id, :address, :latitude,
       :longitude)
   end
+
+  def address(json_hash)
+    lat = json_hash["latitude"].to_s
+    long = json_hash["latitude"].to_s
+    address_string = lat + ", " + long
+    address_string
+  end
+
   # def current_location_markers(current_locations)
   #   @hash = Gmaps4rails.build_markers(current_locations)
   # do |current_location, marker|

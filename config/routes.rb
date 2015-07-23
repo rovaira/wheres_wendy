@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users, only: [:show]
   resources :current_locations, only: [:index, :update]
+  resources :pings
 
 
   # devise_for :users, controllers: { sessions: "users/sessions" }
