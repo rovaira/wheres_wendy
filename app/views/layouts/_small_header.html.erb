@@ -1,11 +1,12 @@
-<nav class="tab-bar show-for-small-only test">
-  <section class="middle tab-bar-section">
-    <h1 class="title"><%= link_to "Where's Wendy?", root_path %></h1>
-  </section>
-  <section class="right-small">
-    <a class="right-off-canvas-toggle menu-icon" href="#"><span></span></a>
-  </section>
-</nav>
+<body class="<%= params[:controller] %>">
+  <nav class="tab-bar show-for-small-only <%= "test" if params[:controller] == 'homes' %>">
+    <section class="middle tab-bar-section">
+      <h1 class="title"><%= link_to "Where's Wendy?", root_path %></h1>
+    </section>
+    <section class="right-small">
+      <a class="right-off-canvas-toggle menu-icon" href="#"><span></span></a>
+    </section>
+  </nav>
 
 <aside class="right-off-canvas-menu show-for-small-only">
   <ul class="off-canvas-list">
