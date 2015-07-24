@@ -147,20 +147,21 @@ body.users {
   z-index: 2;
   margin-top: 17.36% !important; }
 #home-main-image .inner .home-text-search h1 {
+  padding-top: 30px;
   font-family: 'Pacifico', cursive;
   font-style: italic;
   letter-spacing: 1px;
-  font-size: 8vw;
+  font-size: 11vw;
   color: #fff;
   text-align: center;
   /*height: 73px;*/
   line-height: 90% !important;
-  margin-bottom: 7px; }
+  margin-bottom: 20px; }
 #home-main-image .inner .home-text-search h2 {
   width: 100%;
   font-family: 'Lato', sans-serif;
   font-weight: 300;
-  font-size: 3vw;
+  font-size: 7vw;
   /*height: 18px;*/
   /*line-height: 18px !important;*/
   text-align: center;
