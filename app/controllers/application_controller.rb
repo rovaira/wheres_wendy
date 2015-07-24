@@ -25,9 +25,6 @@ class ApplicationController < ActionController::Base
         :blurb,
         :phone,
         :share_phone,
-        :location,
-        :latitude,
-        :longitude
         )
     end
 
@@ -42,9 +39,7 @@ class ApplicationController < ActionController::Base
         :blurb,
         :phone,
         :share_phone,
-        :location,
-        :latitude,
-        :longitude
+        :current_password
         )
     end
   end
