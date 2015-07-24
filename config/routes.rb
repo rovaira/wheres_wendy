@@ -1,12 +1,8 @@
 Rails.application.routes.draw do
   root 'homes#index'
-<<<<<<< HEAD
+
   devise_for :users, controllers: {sessions: 'my_devise/sessions'}
   resources :users, only: [:show, :update, :edit, :destroy]
-=======
-  devise_for :users
-  resources :users, only: [:destroy, :show, :edit, :update]
->>>>>>> add-activemailer
   resources :current_locations, only: [:index, :update]
   resources :pings
 
