@@ -1,31 +1,27 @@
 class CurrentLocationsController < ApplicationController
-  before_action :authenticate_user!
-
   def index
-    # if params[:search].present?
-    #   current_locations = CurrentLocation.near(params[:search], 5)
-    #   # current_location_markers(current_locations)
-    #   locals current_locations: current_locations
-    # else
-    #   current_locations = CurrentLocation.all
-    #   # current_location_markers(current_locations)
-    #   locals current_locations: current_locations
-    # end
-    @current_locations = CurrentLocation.where.not(user_id: current_user)
-    @hash = Gmaps4rails.build_markers(@current_locations) do |current_location, marker|
-      infowindow = %{
-      #{current_location.user.first_name} #{current_location.user.last_name} \n
-      #{current_location.user.class_year}
-    }
-      marker.lat current_location.latitude
-      marker.lng current_location.longitude
-      marker.infowindow(infowindow)
+  authenticate_user!
+    if params[:search].present?
+      current_locations = CurrentLocation.near(params[:search], 2)
+      current_location_markers(current_locations)
+      locals current_locations: current_locations
+    else
+      current_locations = CurrentLocation.where.not(user_id: current_user)
+      current_location_markers(current_locations)
+      locals current_locations: current_locations
     end
 
-  end
+    # @current_locations = CurrentLocation.where.not(user_id: current_user)
+    # @hash = Gmaps4rails.build_markers(@current_locations) do |current_location, marker|
+    #   infowindow = %{
+    #   #{current_location.user.first_name} #{current_location.user.last_name} \n
+    #   #{current_location.user.class_year}
+    # }
+    #   marker.lat current_location.latitude
+    #   marker.lng current_location.longitude
+    #   marker.infowindow(infowindow)
+    # end
 
-  def show
-    @current_location = CurrentLocation.find(params[:id])
   end
 
   def new
@@ -48,8 +44,8 @@ class CurrentLocationsController < ApplicationController
 
   def update
     json_hash = JSON.parse(params.first[0])
-    lat = json_hash["latitude"].to_s
-    long = json_hash["longitude"].to_s
+    lat = json_hash["latitude"].round(6).to_s
+    long = json_hash["longitude"].round(6).to_s
     query = lat + "," + long
     found_address = Geocoder.address(query)
 
@@ -57,10 +53,10 @@ class CurrentLocationsController < ApplicationController
 
     @current_location = CurrentLocation.find_or_create_by(user_id: params[:id])
     if @current_location.update_attributes(json_hash)
-      redirect_to @current_location,
-        notice: "Successfully updated user's location."
+      flash[:notice] = "Successfully updated your location."
+      redirect_to @current_location
     else
-      render action: 'edit'
+      render :edit
     end
   end
 
@@ -84,12 +80,15 @@ class CurrentLocationsController < ApplicationController
     address_string
   end
 
-  # def current_location_markers(current_locations)
-  #   @hash = Gmaps4rails.build_markers(current_locations)
-  # do |current_location, marker|
-  #     marker.lat current_location.latitude
-  #     marker.lng current_location.longitude
-  #     marker.infowindow current_location.address
-  #   end
-  # end
+  def current_location_markers(current_locations)
+    @hash = Gmaps4rails.build_markers(current_locations) do |current_location, marker|
+      infowindow = %{
+      #{current_location.user.first_name} #{current_location.user.last_name} \n
+      #{current_location.user.class_year}
+    }
+      marker.lat current_location.latitude
+      marker.lng current_location.longitude
+      marker.infowindow(infowindow)
+    end
+  end
 end

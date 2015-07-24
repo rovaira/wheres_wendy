@@ -31,20 +31,21 @@
   <%= javascript_include_tag 'application' %>
 
   <div id="registration-modal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-    <%= render partial: "devise/registrations/signup_form", locals: { user: current_user }  %>
+    <%= render partial: "devise/registrations/signup_form" %>
     <a class="close-reveal-modal" aria-label="Close">&#215;</a>
   </div>
 
   <div id="edit-registration-modal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-    <%= render partial: "devise/registrations/edit_form", locals: { user: current_user } %>
+    <% if current_user %>
+      <%= render partial: "devise/registrations/edit_form", locals: { user: current_user } %>
+    <% end %>
     <a class="close-reveal-modal" aria-label="Close">&#215;</a>
   </div>
 
   <div id="sign-in-modal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-    <%= render partial: "devise/sessions/signin_form", locals: { user: current_user } %>
+    <%= render partial: "devise/sessions/signin_form" %>
     <a class="close-reveal-modal" aria-label="Close">&#215;</a>
   </div>
-
 
   <%= yield :extra_footer %>
 </body>

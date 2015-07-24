@@ -12,14 +12,10 @@ feature 'user signs in', %{
 
     visit root_path
 
-    within(".show-for-medium-up") do
-      click_link "Sign In"
-    end
-
     within('#sign-in-modal') do
       fill_in 'Email', with: user.email
       fill_in 'Password', with: user.password
-      click_button 'Log in'
+      click_button 'Sign In'
     end
 
     expect(page).to have_content('Signed in successfully')
@@ -29,12 +25,8 @@ feature 'user signs in', %{
   scenario 'specify invalid credentials' do
     visit root_path
 
-    within(".show-for-medium-up") do
-      click_link "Sign In"
-    end
-
     within('#sign-in-modal') do
-      click_button 'Log in'
+      click_button 'Sign In'
     end
 
     expect(page).to have_content('Invalid email or password')
