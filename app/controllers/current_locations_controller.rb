@@ -46,7 +46,7 @@ class CurrentLocationsController < ApplicationController
 
       respond_to do |format|
         format.html
-        format.json { render json: 1 }
+        format.json { render nothing: true, status: 200 }
       end
     end
   end
