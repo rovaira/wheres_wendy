@@ -15,8 +15,6 @@
       <th>Name</th>
       <th>Class Year</th>
       <th>Address</th>
-      <th>Latitude</th>
-      <th>Longitude</th>
     </tr>
 
     <% for current_location in current_locations %>
@@ -24,8 +22,6 @@
         <td><%= link_to "#{current_location.user.first_name} #{current_location.user.last_name}", user_path(id: current_location.user) %></td>
         <td><%= current_location.user.class_year %></td>
         <td><%= current_location.address %></td>
-        <td><%= current_location.latitude %></td>
-        <td><%= current_location.longitude %></td>
       </tr>
     <% end %>
   </table>
