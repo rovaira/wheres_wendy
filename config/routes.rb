@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'homes#index'
   devise_for :users
-  resources :users, only: [:show, :update, :edit, :destroy]
+  resources :users, only: [:destroy, :show, :edit, :update]
   resources :current_locations, only: [:index, :update]
   resources :pings
 
