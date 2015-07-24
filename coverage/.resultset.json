@@ -80,6 +80,7 @@
         null,
         null,
         null,
+<<<<<<< HEAD
         null
       ],
       "/Users/rovaira/Dropbox/LaunchAcademy/wheres_wendy/app/controllers/my_devise/sessions_controller.rb": [
@@ -93,6 +94,8 @@
         1,
         null,
         null,
+=======
+>>>>>>> add-activemailer
         null
       ],
       "/Users/rovaira/Dropbox/LaunchAcademy/wheres_wendy/app/controllers/current_locations_controller.rb": [
@@ -249,6 +252,10 @@
         null
       ]
     },
+<<<<<<< HEAD
     "timestamp": 1437752768
+=======
+    "timestamp": 1437757536
+>>>>>>> add-activemailer
   }
 }

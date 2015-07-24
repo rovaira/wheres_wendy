@@ -36,7 +36,11 @@ class CurrentLocationsController < ApplicationController
     found_address = address(json_hash)
     json_hash["address"] = found_address
 
-    @current_location = CurrentLocation.find_or_create_by(user_id: params[:id])
+    if CurrentLocation.find_by(user_id: current_user.id) == nil
+      CurrentLocation.create(user_id: current_user.id)
+    end
+
+    @current_location = CurrentLocation.find_by(user_id: current_user.id)
     if @current_location.update_attributes(json_hash)
       flash[:notice] = "Successfully updated your location."
       redirect_to @current_location

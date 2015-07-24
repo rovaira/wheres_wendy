@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
+
   def destroy
     if current_user.try(:admin?)
       @user = User.find(params[:id])
@@ -34,6 +36,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :first_name, :last_name, :email)
+    params.require(:user).permit(:email, :first_name, :last_name, :class_year, :blurb, :phone, :share_phone)
   end
 end
