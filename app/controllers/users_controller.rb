@@ -1,4 +1,20 @@
 class UsersController < ApplicationController
+
+  # def new
+  #   @user = User.new
+  # end
+  #
+  # def create
+  #   @user = User.new(user_params)
+  #   CurrentLocation.new(user_id: current_user.id)
+  #   if @user.save
+  #     redirect_to @user,``
+  #       flash[:notice] = "Successfully created user location."
+  #   else
+  #     render :action => 'new'
+  #   end
+  # end
+
   def destroy
     if current_user.try(:admin?)
       @user = User.find(params[:id])
@@ -34,6 +50,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :first_name, :last_name, :email)
+    params.require(:user).permit(:email, :first_name, :last_name, :class_year, :blurb, :phone, :share_phone)
   end
 end
