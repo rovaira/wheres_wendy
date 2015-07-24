@@ -16,12 +16,11 @@
       <%= render "layouts/not_small_header" %>
       <%= render "layouts/flash" %>
 
-      <!-- <section class="main-section"> -->
         <div class="row fullWidth">
           <div class="small-12 small-centered text-center">
             <%= yield %>
           </div>
-        <!-- </section> -->
+        </div>
 
         <a class="exit-off-canvas"></a>
       </div>
@@ -47,6 +46,18 @@
     <a class="close-reveal-modal" aria-label="Close">&#215;</a>
   </div>
 
+
   <%= yield :extra_footer %>
+
+  <script>
+  $(document).ready(function() {
+    setTimeout(function(){
+      $('#notice_wrapper').fadeOut("slow", function() {
+        $(this).remove();
+      })
+    }, 1500);
+  });
+</script>
+
 </body>
 </html>
