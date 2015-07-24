@@ -1,6 +1,7 @@
 class CurrentLocationsController < ApplicationController
   def index
-  authenticate_user!
+    authenticate_user!
+
     if params[:search].present?
       current_locations = CurrentLocation.near(params[:search], 5)
       current_location_markers(current_locations)
@@ -10,18 +11,6 @@ class CurrentLocationsController < ApplicationController
       current_location_markers(current_locations)
       locals current_locations: current_locations
     end
-
-    # @current_locations = CurrentLocation.where.not(user_id: current_user)
-    # @hash = Gmaps4rails.build_markers(@current_locations) do |current_location, marker|
-    #   infowindow = %{
-    #   #{current_location.user.first_name} #{current_location.user.last_name} \n
-    #   #{current_location.user.class_year}
-    # }
-    #   marker.lat current_location.latitude
-    #   marker.lng current_location.longitude
-    #   marker.infowindow(infowindow)
-    # end
-
   end
 
   def new
@@ -44,11 +33,7 @@ class CurrentLocationsController < ApplicationController
 
   def update
     json_hash = JSON.parse(params.first[0])
-    lat = json_hash["latitude"].round(6).to_s
-    long = json_hash["longitude"].round(6).to_s
-    query = lat + "," + long
-    found_address = Geocoder.address(query)
-
+    found_address = address(json_hash)
     json_hash["address"] = found_address
 
     @current_location = CurrentLocation.find_or_create_by(user_id: params[:id])
@@ -75,9 +60,9 @@ class CurrentLocationsController < ApplicationController
 
   def address(json_hash)
     lat = json_hash["latitude"].to_s
-    long = json_hash["latitude"].to_s
+    long = json_hash["longitude"].to_s
     address_string = lat + ", " + long
-    address_string
+    Geocoder.address(address_string)
   end
 
   def current_location_markers(current_locations)
