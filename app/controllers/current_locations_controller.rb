@@ -43,9 +43,11 @@ class CurrentLocationsController < ApplicationController
     @current_location = CurrentLocation.find_by(user_id: current_user.id)
     if @current_location.update_attributes(json_hash)
       flash[:notice] = "Successfully updated your location."
-      redirect_to @current_location
-    else
-      render :edit
+
+      respond_to do |format|
+        format.html
+        format.json { render nothing: true, status: 200 }
+      end
     end
   end
 

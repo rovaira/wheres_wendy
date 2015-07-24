@@ -1,7 +1,5 @@
 <h1 class="header"> Say hello! </h1>
-<!-- <br> -->
 <div class="user-profile">
-
   <ul>
     <li><h3><%= @user.first_name %> <%= @user.last_name %></h3></li>
     <% if @user.blurb.present? %>
@@ -13,7 +11,6 @@
     </li><%= @current_location[0].address %></li>
     <% end %>
   </ul>
-
 </div>
 
 <% if current_user.id.to_s == params[:id] %>
