@@ -1,7 +1,16 @@
 <div id="current_locations_page">
-  <h1>Here's Wendy!</h1>
+  <h1 class="header">Here's Wendy!</h1>
 
-  <table>
+  <div class="small-8 small-centered fill-form">
+
+    <%= form_tag current_locations_path, method: :get do %>
+      <span class="form-field"><%= text_field_tag :search, params[:search], placeholder: "Search for Wendy elsewhere!" %></span>
+      <%= submit_tag "Search", name: nil, class: "button small" %>
+    <% end %>
+
+  </div>
+
+  <table class="small-7 center">
     <tr>
       <th>Name</th>
       <th>Class Year</th>
@@ -10,7 +19,7 @@
       <th>Longitude</th>
     </tr>
 
-    <% for current_location in @current_locations %>
+    <% for current_location in current_locations %>
       <tr>
         <td><%= link_to "#{current_location.user.first_name} #{current_location.user.last_name}", user_path(id: current_location.user) %></td>
         <td><%= current_location.user.class_year %></td>
@@ -20,11 +29,9 @@
       </tr>
     <% end %>
   </table>
-
-  <div style='width: 800px;'>
-    <div id="map" style='width: 800px; height: 400px;'></div>
-  </div>
 </div>
+
+    <div id="map"></div>
 
 <% if current_user %>
   <div id="user_id" style="display: none"><%= current_user.id %></div>
@@ -39,9 +46,9 @@
       if(navigator.geolocation)
         navigator.geolocation.getCurrentPosition(displayOnMap);
         markers = handler.addMarkers(<%=raw @hash.to_json %>);
-        handler.bounds.extendWith(markers);
-        handler.fitMapToBounds();
-        // handler.getMap().setZoom(4);
+        // handler.bounds.extendWith(markers);
+        // handler.fitMapToBounds();
+        handler.getMap().setZoom(17);
     });
 
     var userId = document.getElementById("user_id").innerHTML;
