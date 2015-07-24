@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     if current_user.try(:admin?)
       @user = User.find(params[:id])
       @user.destroy
-      flash[:success] = "User deleted"
+      flash[:notice] = "User deleted"
       redirect_to users_path
     end
   end
@@ -22,10 +22,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if (current_user && current_user.id == @user.id)
       if @user.update(user_params)
-        flash[:success] = "Profile updated."
+        flash[:notice] = "Profile updated."
         redirect_to user_path(@user)
       else
-        flash[:alert] = @user.errors.full_messages.join(".  ")
+        flash[:notice] = @user.errors.full_messages.join(".  ")
         render :edit
       end
     end
