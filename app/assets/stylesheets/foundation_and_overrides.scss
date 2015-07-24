@@ -117,10 +117,11 @@ $wellesley         : #336699;
 // $jet         : #222222;
 // $black       : #000000;
 $transparent: rgba(0, 0, 0, 0);
+$lilac-gray       : #D1D1E0;
 
 // We use these as default colors throughout
 // $primary-color: #008CBA;
-// $secondary-color: #e7e7e7;
+$secondary-color: #e7e7e7;
 // $alert-color: #f04124;
 // $success-color: #43AC6A;
 // $warning-color: #f08a24;
@@ -217,7 +218,7 @@ $body-bg: $snow;
 $header-font-family: $font-family-serif;
 // $header-font-weight: $font-weight-normal;
 // $header-font-style: normal;
-// $header-font-color: $jet;
+$header-font-color: $wellesley;
 // $header-line-height: 1.4;
 // $header-top-margin: .2rem;
 // $header-bottom-margin: .5rem;
@@ -463,7 +464,7 @@ $anchor-font-color: $wellesley;
 // $button-font-align: center;
 
 // We use these to control various hover effects.
-// $button-function-factor: -20%;
+$button-function-factor: -20%;
 
 // We use these to control button border styles.
 $button-border-width: 1;
@@ -472,8 +473,8 @@ $button-bg-color: $transparent;
 // $button-bg-hover: scale-color($button-bg-color, $lightness: $button-function-factor);
 $button-bg-hover: $wellesley;
 $button-border-color: $white;
-// $secondary-button-bg-hover: scale-color($secondary-color, $lightness: $button-function-factor);
-// $secondary-button-border-color: $secondary-button-bg-hover;
+$secondary-button-bg-hover: scale-color($lilac-gray, $lightness: $button-function-factor);
+$secondary-button-border-color: $secondary-button-bg-hover;
 // $success-button-bg-hover: scale-color($success-color, $lightness: $button-function-factor);
 // $success-button-border-color: $success-button-bg-hover;
 // $alert-button-bg-hover: scale-color($alert-color, $lightness: $button-function-factor);
@@ -860,13 +861,13 @@ $tabbar-bg: $snow;
 
 // Off Canvas Menu Variables
 // $off-canvas-width: rem-calc(250);
-// $off-canvas-bg: $oil;
+$off-canvas-bg: $wellesley;
 // $off-canvas-bg-hover: scale-color($tabbar-bg, $lightness: -30%);
 // $off-canvas-bg-active: scale-color($tabbar-bg, $lightness: -30%);
 
 // Off Canvas Menu List Variables
 // $off-canvas-label-padding: .3rem rem-calc(15);
-// $off-canvas-label-color: $aluminum;
+$off-canvas-label-color: $lilac-gray;
 // $off-canvas-label-text-transform: uppercase;
 // $off-canvas-label-font-size: rem-calc(12);
 // $off-canvas-label-font-weight: $font-weight-bold;
@@ -876,6 +877,7 @@ $tabbar-bg: $snow;
 // $off-canvas-label-margin:0;
 // $off-canvas-link-padding: rem-calc(10, 15);
 // $off-canvas-link-color: rgba($white, .7);
+$off-canvas-link-color: $snow;
 // $off-canvas-link-border-bottom: 1px solid scale-color($off-canvas-bg, $lightness: -25%);
 // $off-canvas-back-bg: #444;
 // $off-canvas-back-border-top: $off-canvas-label-border-top;
@@ -1298,7 +1300,7 @@ $tabbar-menu-icon-color: $wellesley;
 
 // These control the background color for the table and even rows
 // $table-bg: $white;
-// $table-even-row-bg: $snow;
+$table-even-row-bg: $transparent;
 
 // These control the table cell border style
 // $table-border-style: solid;

@@ -22,5 +22,6 @@ feature 'user views nearby alums', %{
     expect(page).to have_content(user.first_name)
     expect(page).to have_content(user.last_name)
     expect(page).to have_content(user.class_year)
+    expect(page).to have_content(current_location.address)
   end
 end

@@ -1,36 +1,16 @@
 class CurrentLocationsController < ApplicationController
-  before_action :authenticate_user!
-
   def index
-    # if params[:search].present?
-    #   current_locations = CurrentLocation.near(params[:search], 5)
-    #   # current_location_markers(current_locations)
-    #   locals current_locations: current_locations
-    # else
-    #   current_locations = CurrentLocation.all
-    #   # current_location_markers(current_locations)
-    #   locals current_locations: current_locations
-    # end
-    @current_locations = CurrentLocation.where.not(user_id: current_user)
+    authenticate_user!
 
-    if !@current_locations.empty?
-      @hash = Gmaps4rails.build_markers(@current_locations) do |current_location, marker|
-        infowindow = %{
-        #{current_location.user.first_name} #{current_location.user.last_name} \n
-        #{current_location.user.class_year}
-      }
-        marker.lat current_location.latitude
-        marker.lng current_location.longitude
-        marker.infowindow(infowindow)
-      end
+    if params[:search].present?
+      current_locations = CurrentLocation.near(params[:search], 5)
+      current_location_markers(current_locations)
+      locals current_locations: current_locations
     else
-      @hash = {}
+      current_locations = CurrentLocation.where.not(user_id: current_user)
+      current_location_markers(current_locations)
+      locals current_locations: current_locations
     end
-
-  end
-
-  def show
-    @current_location = CurrentLocation.find(params[:id])
   end
 
   def new
@@ -41,7 +21,7 @@ class CurrentLocationsController < ApplicationController
     @current_location = CurrentLocation.new(current_location_params)
     if @current_location.save
       redirect_to @current_location,
-        notice: "Successfully created user location."
+        flash[:notice] = "Successfully created user location."
     else
       render :action => 'new'
     end
@@ -53,15 +33,15 @@ class CurrentLocationsController < ApplicationController
 
   def update
     json_hash = JSON.parse(params.first[0])
-    # current_user = User.find(current_user.id)
-    # current_location = CurrentLocation.find_or_create_by(current_user.id)
+    found_address = address(json_hash)
+    json_hash["address"] = found_address
 
     @current_location = CurrentLocation.find_or_create_by(user_id: params[:id])
     if @current_location.update_attributes(json_hash)
-      redirect_to @current_location,
-        notice: "Successfully updated user's location."
+      flash[:notice] = "Successfully updated your location."
+      redirect_to @current_location
     else
-      render action: 'edit'
+      render :edit
     end
   end
 
@@ -71,25 +51,29 @@ class CurrentLocationsController < ApplicationController
     redirect_to parks_url, notice: "Successfully destroyed user's location."
   end
 
-  def geocode
-    position = Geocoder.coordinates(params[:query])
-    respond_to do |wants|
-      wants.json { render :json => position }
-    end
-  end
-
   private
 
   def current_location_params
     params.require(:current_location).permit(:user_id, :address, :latitude,
       :longitude)
   end
-  # def current_location_markers(current_locations)
-  #   @hash = Gmaps4rails.build_markers(current_locations)
-  # do |current_location, marker|
-  #     marker.lat current_location.latitude
-  #     marker.lng current_location.longitude
-  #     marker.infowindow current_location.address
-  #   end
-  # end
+
+  def address(json_hash)
+    lat = json_hash["latitude"].to_s
+    long = json_hash["longitude"].to_s
+    address_string = lat + ", " + long
+    Geocoder.address(address_string)
+  end
+
+  def current_location_markers(current_locations)
+    @hash = Gmaps4rails.build_markers(current_locations) do |current_location, marker|
+      infowindow = %{
+      #{current_location.user.first_name} #{current_location.user.last_name} \n
+      #{current_location.user.class_year}
+    }
+      marker.lat current_location.latitude
+      marker.lng current_location.longitude
+      marker.infowindow(infowindow)
+    end
+  end
 end

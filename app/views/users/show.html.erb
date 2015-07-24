@@ -1,16 +1,24 @@
-<h1> Say hello! </h1>
+<h1 class="header"> Say hello! </h1>
+<div class="user-profile">
+  <ul>
+    <li><h3><%= @user.first_name %> <%= @user.last_name %></h3></li>
+    <% if @user.blurb.present? %>
+      <li>"<%= @user.blurb %>"</li>
+    <% end %>
+    <li>Class of <%= @user.class_year %></li>
+    <% if @current_location.present? %>
+      <li>Last Check In: </li>
+    </li><%= @current_location[0].address %></li>
+    <% end %>
+  </ul>
+</div>
 
-<ul class="user-profile">
-  <li><%= @user.first_name %> <%= @user.last_name %></li>
-  <% if @user.blurb.present? %>
-    <li>"<%= @user.blurb %>"</li>
+<% if current_user.id.to_s == params[:id] %>
+  <%= link_to 'Edit Profile', edit_user_registration_path, "data-reveal-id" => "edit-registration-modal" %>
+<% else %>
+  <%= form_for @ping do |f| %>
+    <%= f.hidden_field :sender_id, value: current_user.id  %>
+    <%= f.hidden_field :receiver_id, value: params[:id] %>
+    <%= f.submit "Ping Me!", class: "button" %>
   <% end %>
-  <li>Class of <%= @user.class_year %></li>
-  <li>Last Check In: <%= @current_location[0].address %></li>
-</ul>
-
-<%= form_for @ping do |f| %>
-  <%= f.hidden_field :sender_id, value: current_user.id  %>
-  <%= f.hidden_field :receiver_id, value: params[:id] %>
-  <%= f.submit "Ping Me!", class: "button" %>
 <% end %>
