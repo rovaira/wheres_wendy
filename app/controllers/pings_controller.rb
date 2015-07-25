@@ -8,7 +8,6 @@ class PingsController < ApplicationController
   def create
     receiver = User.find(params["ping"]["receiver_id"])
     @ping = Ping.new(ping_params)
-    binding.pry
     if @ping.save
       PingMailer.new_ping(@ping).deliver_later
       flash[:notice] = "Successfully pinged #{receiver.first_name}."

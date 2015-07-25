@@ -3,7 +3,7 @@ class PingMailer < ApplicationMailer
     @ping = ping
 
     mail(
-      to: ping.receiver.email
+      to: ping.receiver.email,
       subject: "#{ping.sender.first_name} says hi!"
     )
   end
