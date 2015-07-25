@@ -39,5 +39,6 @@ feature 'user emails other user', %{
     click_button "Ping Me!"
 
     expect(page).to have_content("Successfully pinged #{user.first_name}.")
+    expect(ActionMailer::Base.deliveries.count).to eq(1)
   end
 end

@@ -1,0 +1,11 @@
+Hello <%= @ping.receiver.first_name %>,
+
+<%= @ping.sender.first_name %> from the Class of <%= @ping.sender.class_year %>
+is nearby and says hello.
+
+Message back to say hi and keep the lamp burning!
+
+<%= @ping.sender.email %>
+<% if @ping.sender.share_phone == "true" %>
+  <%= @ping.sender.phone %>
+<% end %>
