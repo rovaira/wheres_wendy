@@ -11,15 +11,47 @@ Ruby version: 2.2.0
 System dependencies (gems):
 - Geocoder
 - Gmaps4rails
+- Mailcatacher
 
+Mailcatcher is NOT included in the Gemfile and instead should be added via your console:
+```
+$ gem install mailcatcher && mailcatcher
+```
+
+Please include the following in your development.rb:
+```
+# config/development.rb
+Rails.application.configure do
+  # mailcatcher config
+  #   to view emails generated in development:
+  #   `gem install mailcatcher && mailcatcher`
+  config.action_mailer.delivery_method = :smtp
+
+  config.action_mailer.smtp_settings = {
+    address: "localhost",
+    port: 1025
+  }
+
+  config.action_mailer.default_url_options = {
+    host: "localhost",
+    port: 3000
+  }
+end
+```
+
+
+
+```
 Get started:
-```bundle```
+bundle
 
 Boot up the database:
-```rake db:migrate```
+rake db:migrate
 
 Run the test suite:
-```rake```
+rake
 
 Deploy:
-On a clean MASTER branch, run ```git push heroku master```
+On a clean MASTER branch, run:
+git push heroku master
+```
