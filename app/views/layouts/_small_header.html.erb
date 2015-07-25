@@ -1,5 +1,5 @@
 <body class="<%= params[:controller] %>">
-  <nav class="tab-bar show-for-small-only <%= "nav" if params[:controller] == 'homes' %>">
+  <nav class="tab-bar show-for-medium-down <%= "nav" if params[:controller] == 'homes' %>">
     <section class="left tab-bar-section">
       <h1 class="title"><%= link_to "Where's Wendy?", root_path %></h1>
     </section>
@@ -8,7 +8,7 @@
     </section>
   </nav>
 
-  <aside class="right-off-canvas-menu show-for-small-only">
+  <aside class="right-off-canvas-menu show-for-medium-down">
     <ul class="off-canvas-list">
       <%- if !current_user.nil? -%>
         <li><label> Welcome <%= current_user.first_name %>! </label></li>
@@ -17,7 +17,6 @@
       <%- end -%>
       <%- if current_user %>
         <li><%= link_to 'Your Profile', user_path(current_user) %></li>
-        <li><%= link_to 'Edit Profile', edit_user_registration_path, "data-reveal-id" => "edit-registration-modal" %></li>
         <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
       <%- else -%>
         <li><%= link_to 'Sign Up', new_user_registration_path, "data-reveal-id" => "registration-modal"  %></li>

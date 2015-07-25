@@ -3,7 +3,7 @@ Coveralls.wear!('rails')
 
 def sign_in_as(user)
   visit root_path
-  # within(".show-for-small-only") do
+  # within(".show-for-medium-down") do
   #   click_link "Sign In"
   # end
   within('#sign-in-modal') do
