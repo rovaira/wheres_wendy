@@ -11,7 +11,7 @@ Ruby version: 2.2.0
 System dependencies (gems):
 - Geocoder
 - Gmaps4rails
-- Mailcatacher
+- Mailcatcher
 
 Mailcatcher is NOT included in the Gemfile and instead should be added via your console:
 ```
@@ -39,19 +39,23 @@ Rails.application.configure do
 end
 ```
 
-
-
-```
 Get started:
+```
 bundle
+```
 
 Boot up the database:
+```
 rake db:migrate
+```
 
 Run the test suite:
+```
 rake
+```
 
 Deploy:
 On a clean MASTER branch, run:
+```
 git push heroku master
 ```
