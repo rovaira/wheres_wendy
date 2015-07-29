@@ -44,7 +44,7 @@ back using their info below to say hi and keep the lamp burning!
     if @ping.save
       PingMailer.new_ping(@ping).deliver_later
       if receiver.phone
-        if @ping.sender.share_phone == "true"
+        if @ping.sender.share_phone == true
           @client.messages.create(share_phone_hash)
         else
           @client.messages.create(email_only_hash)
