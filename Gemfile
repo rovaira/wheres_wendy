@@ -14,6 +14,7 @@ gem 'foundation-rails'
 gem 'geocoder'
 gem 'rails_12factor'
 gem 'gmaps4rails'
+gem 'twilio-ruby'
 
 group :development, :test do
   gem 'byebug'
