@@ -13,15 +13,15 @@ class PingsController < ApplicationController
     share_phone_body = %{
 Hello #{receiver.first_name}! #{@ping.sender.first_name} from
 the Class of #{@ping.sender.class_year} is nearby and says hello. Message
-back using their info below to say hi and keep the lamp burning!"
-
-#{ping.sender.phone}
-#{ping.sender.email}
+back using their info below to say hi and keep the lamp burning!
+#{@ping.sender.phone}
+#{@ping.sender.email}
   }
-    private_phone_body = %{
+    email_only_body = %{
 Hello #{receiver.first_name}! #{@ping.sender.first_name} from
 the Class of #{@ping.sender.class_year} is nearby and says hello. Message
-back using their info below to say hi and keep the lamp burning!"
+back using their info below to say hi and keep the lamp burning!
+#{@ping.sender.email}
   }
     lamp_image = "https://s3.amazonaws.com/wheres-wendy-production/static/lamp_text.jpg"
 
@@ -32,10 +32,10 @@ back using their info below to say hi and keep the lamp burning!"
       media_url: lamp_image
     }
 
-    private_phone_hash = {
+    email_only_hash = {
       from: ENV["TWILIO_PHONE_NUMBER"],
       to: to_number,
-      body: private_phone_body,
+      body: email_only_body,
       media_url: lamp_image
     }
 
@@ -47,7 +47,7 @@ back using their info below to say hi and keep the lamp burning!"
         if @ping.sender.share_phone == "true"
           @client.messages.create(share_phone_hash)
         else
-          @client.messages.create(private_phone_hash)
+          @client.messages.create(email_only_hash)
         end
       end
       flash[:notice] = "Successfully pinged #{receiver.first_name}."
