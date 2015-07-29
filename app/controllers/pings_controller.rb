@@ -16,7 +16,7 @@ class PingsController < ApplicationController
 
     if @ping.save
       PingMailer.new_ping(@ping).deliver_later
-      @client.message.create(
+      @client.messages.create(
         from: ENV["TWILIO_PHONE_NUMBER"],
         to: "+#{receiver.phone}",
         body: "Hello #{receiver.first_name}! SENDER from the Class of YEAR is nearby and says hello. Message back using their information below to say hi and keep the lamp burning! PHONE NUMBER/EMAIL"
