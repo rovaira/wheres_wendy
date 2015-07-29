@@ -29,11 +29,11 @@ class PingsController < ApplicationController
     if ping.save
       PingMailer.new_ping(@ping).deliver_later
       if ping.receiver.phone
-        @text = Twilio::REST::Client.new(twilio_sid, twilio_token)
+        @mms = Twilio::REST::Client.new(twilio_sid, twilio_token)
         if ping.sender.share_phone == true
-          @text.messages.create(share_phone_hash)
+          @mms.messages.create(share_phone_hash)
         else
-          @text.messages.create(email_only_hash)
+          @mms.messages.create(email_only_hash)
         end
       end
       flash[:notice] = "Successfully pinged #{ping.receiver.first_name}."
