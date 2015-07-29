@@ -18,7 +18,7 @@ class PingsController < ApplicationController
       PingMailer.new_ping(@ping).deliver_later
       @client.messages.create(
         from: ENV["TWILIO_PHONE_NUMBER"],
-        to: "+#{receiver.phone}",
+        to: "+1#{receiver.phone}",
         body: "Hello #{receiver.first_name}! SENDER from the Class of YEAR is nearby and says hello. Message back using their information below to say hi and keep the lamp burning! PHONE NUMBER/EMAIL"
       )
       flash[:notice] = "Successfully pinged #{receiver.first_name}."
