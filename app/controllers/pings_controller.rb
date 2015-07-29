@@ -39,11 +39,10 @@ back using their info below to say hi and keep the lamp burning!
       media_url: lamp_image
     }
 
-    @client = Twilio::REST::Client.new ENV["TWILIO_ACCOUNT_SID"], ENV["TWILIO_AUTH_TOKEN"]
-
     if @ping.save
       PingMailer.new_ping(@ping).deliver_later
       if receiver.phone
+        @client = Twilio::REST::Client.new ENV["TWILIO_ACCOUNT_SID"], ENV["TWILIO_AUTH_TOKEN"]
         if @ping.sender.share_phone == true
           @client.messages.create(share_phone_hash)
         else
