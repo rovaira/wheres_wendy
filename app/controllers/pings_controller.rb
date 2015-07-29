@@ -63,17 +63,4 @@ back using their info below to say hi and keep the lamp burning!
   def ping_params
     params.require(:ping).permit(:sender_id, :receiver_id)
   end
-
-  # def text_body(ping)
-  #   %{
-  #     "Hello #{receiver.first_name}! #{ping.sender.first_name} from the Class
-  #     of #{ping.sender.class_year} is nearby and says hello.
-  #
-  #     Message back using their information below to say hi and keep the
-  #     lamp burning!
-  #
-  #     #{ping.sender.phone}
-  #     #{ping.sender.email}
-  #   }
-  # end
 end
