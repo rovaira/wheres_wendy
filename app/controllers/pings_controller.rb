@@ -23,7 +23,7 @@ the Class of #{@ping.sender.class_year} is nearby and says hello. Message
 back using their info below to say hi and keep the lamp burning!
 #{@ping.sender.email}
   }
-    lamp_image = "https://s3.amazonaws.com/wheres-wendy-production/static/lamp_text.jpg"
+    lamp_image = "https://s3.amazonaws.com/wheres-wendy-production/static/lamp_text_larger.jpg"
 
     share_phone_hash = {
       from: ENV["TWILIO_PHONE_NUMBER"],
