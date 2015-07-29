@@ -8,7 +8,9 @@ class PingsController < ApplicationController
   def create
     ping = Ping.new(ping_params)
     @ping = ping
-    # twilio_number = ENV["TWILIO_PHONE_NUMBER"]
+    twilio_number = ENV["TWILIO_PHONE_NUMBER"]
+    twilio_sid = ENV["TWILIO_ACCOUNT_SID"]
+    twilio_token = ENV["TWILIO_AUTH_TOKEN"]
     lamp_image = "https://s3.amazonaws.com/wheres-wendy-production/static/lamp_text_larger.jpg"
 
     share_phone_hash = {
@@ -27,7 +29,7 @@ class PingsController < ApplicationController
     if ping.save
       PingMailer.new_ping(@ping).deliver_later
       if ping.receiver.phone
-        @client = Twilio::REST::Client.new(ENV["TWILIO_ACCOUNT_SID"], ENV["TWILIO_AUTH_TOKEN"])
+        @client = Twilio::REST::Client.new(twilio_sid, twilio_token)
         if ping.sender.share_phone == true
           @client.messages.create(share_phone_hash)
         else
