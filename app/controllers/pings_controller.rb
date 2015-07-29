@@ -20,8 +20,8 @@ class PingsController < ApplicationController
           Hello #{receiver.first_name}! #{@ping.sender.first_name} from the
           Class of #{@ping.sender.class_year} is nearby and says hello. Message
           back using their info below to say hi and keep the lamp burning!
-          #{ping.sender.phone}
-          #{ping.sender.email}
+          #{@ping.sender.phone}
+          #{@ping.sender.email}
         }
       )
       flash[:notice] = "Successfully pinged #{receiver.first_name}."
