@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   resources :current_locations, only: [:index, :update]
   resources :pings
 
-
   # devise_for :users, controllers: { sessions: "users/sessions" }
 
   # The priority is based upon order of creation: first created -> highest priority.

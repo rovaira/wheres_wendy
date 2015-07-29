@@ -5,6 +5,6 @@ Hello <%= @ping.receiver.first_name %>,
 Message back using their information below to say hi and keep the lamp burning!
 
 <%= @ping.sender.email %>
-<% if @ping.sender.share_phone == "true" %>
-  <%= @ping.sender.phone %>
+<% if @ping.sender.share_phone == true %>
+<%= @ping.sender.phone %>
 <% end %>
