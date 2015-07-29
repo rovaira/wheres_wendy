@@ -14,13 +14,13 @@ class PingsController < ApplicationController
     lamp_image = "https://s3.amazonaws.com/wheres-wendy-production/static/lamp_text_larger.jpg"
 
     share_phone_hash = {
-      from: ENV["TWILIO_PHONE_NUMBER"],
+      from: twilio_number,
       to: to_number(ping),
       body: share_phone_body(ping),
       media_url: lamp_image
     }
     email_only_hash = {
-      from: ENV["TWILIO_PHONE_NUMBER"],
+      from: twilio_number,
       to: to_number(ping),
       body: email_only_body(ping),
       media_url: lamp_image
