@@ -17,12 +17,13 @@ class PingsController < ApplicationController
         from: ENV["TWILIO_PHONE_NUMBER"],
         to: "+1#{receiver.phone}",
         body: %{
-          Hello #{receiver.first_name}! #{@ping.sender.first_name} from the
-          Class of #{@ping.sender.class_year} is nearby and says hello. Message
-          back using their info below to say hi and keep the lamp burning!
-          #{@ping.sender.phone}
-          #{@ping.sender.email}
-        }
+    Hello #{receiver.first_name}! #{@ping.sender.first_name} from the
+    Class of #{@ping.sender.class_year} is nearby and says hello. Message
+    back using their info below to say hi and keep the lamp burning!
+    #{@ping.sender.phone}
+    #{@ping.sender.email}
+  },
+        media_url: "http://www.wellesley.edu/sites/default/files/assets/departments/creativeservices/images/cpa2005bea00071.jpg"
       )
       flash[:notice] = "Successfully pinged #{receiver.first_name}."
       redirect_to user_path(receiver.id)
