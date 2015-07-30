@@ -1,15 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
 
-  def destroy
-    if current_user.try(:admin?)
-      @user = User.find(params[:id])
-      @user.destroy
-      flash[:notice] = "User deleted"
-      redirect_to users_path
-    end
-  end
-
   def show
     @user = User.find(params[:id])
     @current_location = CurrentLocation.where(user: params[:id])
@@ -23,12 +14,12 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if (current_user && current_user.id == @user.id)
-      if @user.update(user_params)
+      if @user.update_attributes(user_params)
         flash[:notice] = "Profile updated."
         redirect_to user_path(@user)
       else
         flash[:notice] = @user.errors.full_messages.join(".  ")
-        render :edit
+        redirect_to user_path(@user)
       end
     end
   end
