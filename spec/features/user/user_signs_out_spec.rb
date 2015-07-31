@@ -15,7 +15,7 @@ feature 'user signs out', %{
   scenario 'authenticated user signs out' do
     sign_in_as(user)
 
-    within(".show-for-large-only") do
+    within(".show-for-large-up") do
       click_link "Sign Out"
     end
 
