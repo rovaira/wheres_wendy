@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_one :current_location
+  has_one :current_location, dependent: :destroy
   has_many :pings
 
   validates :first_name, presence: true

@@ -1,9 +1,8 @@
 class CurrentLocationsController < ApplicationController
   def index
     authenticate_user!
-
     if params[:search].present?
-      current_locations = CurrentLocation.near(params[:search], 5)
+      current_locations = CurrentLocation.near(params[:search], 2)
       current_location_markers(current_locations)
       locals current_locations: current_locations
     else
@@ -23,7 +22,7 @@ class CurrentLocationsController < ApplicationController
       redirect_to @current_location,
         flash[:notice] = "Successfully created user location."
     else
-      render :action => 'new'
+      render :new
     end
   end
 
