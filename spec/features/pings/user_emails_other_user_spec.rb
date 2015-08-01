@@ -6,10 +6,10 @@ feature 'user emails other user', %{
   So that I can network
 } do
   # Acceptance Criteria
-  # [] I must be a registered user
-  # [] I cannot view map unless I check in (updating my location)
-  # [] I can click on a user's name to access their profile page
-  # [] I can click on a 'Ping Me!' link on their profile page
+  # [X] I must be a registered user
+  # [X] I cannot view map unless I check in (updating my location)
+  # [X] I can click on a user's name to access their profile page
+  # [X] I can click on a 'Ping Me!' link on their profile page
 
   let!(:user) { FactoryGirl.create(:user) }
   let!(:current_location) do

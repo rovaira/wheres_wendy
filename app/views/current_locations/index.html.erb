@@ -36,8 +36,6 @@
 <% content_for :extra_footer do %>
 <script type="text/javascript">
   $(function(){
-    // debugger;
-
     handler = Gmaps.build('Google');
     handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
       if(navigator.geolocation)
